@@ -7,79 +7,57 @@
  var guessesLeft = document.getElementById("guesses-left");
  var alreadyGuessed = document.getElementById("already-guessed");
 
-//  document.getElementById("my-directions").textContent = myDirections;
+ // set up variables
 
-
- //Display the letters guessed
- myDirections.textContent = "Directions: Guess what letter I am thinking of:";
- playerWins.textContent = "Wins: 0 " + wins;
- lossesText.textContent = "Losses: 0 " + losses;
- guessesLeft.textContent = "Guess left:" + guessesLeft;
- alreadyGuessed.textContent = "Already Guessed" + yourGuess;
- 
-  // set up variables
-
-var computerLetter=["a","t","e","c","j","u","y","p","o","u"];
+var computerLetter=["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"];
 var wins=0;
 var losses=0;
-var guessesLeft=10;
-var yourGuess="";
+var gLeft=10
+var yourGuess=[];
 
-//set up on the html page
-// COME BACK TO THIS
-// var html=
+// when a key is pressed
+// document.onkeyup = function(event) {
 
-// "<p>my-directions" Gess what letter I am thinking of:"</p>"
-// "<p>player-wins" + wins + "</p>";
-// "<p>losses-text" + losses + "</p>";
-// "<p>guesses-left" + guessesLeft + "</p>""
-// <p id="already-guessed"></p>
-
-// document.querySelector("#game")
-
-
-//to reset geesses left to 10  
-function resetguessesLeft () {
-    guessesLeft=10;
-}
-//Function for when a key is pressed
-document.onkeyup = function(event) {
-
-
-
-    //Let's listen for the key pressed
-var yourGuess=event.key;
+//Let's listen for the key pressed
+// var yourGuess=event.key;
 
 //to lowercase the letter
-var res=yourGuess.toLowerCase();
-
-
-
-
+// var res=yourGuess.toLowerCase();
 
 //Array that is the correctLetter
-var correctLetter=computerLetter[Math.floor(Math.random() * computerLetter.length)];
-
-if ((yourGuess===correctLetter)){ 
-    wins++;
-    resetguessesLeft;
-} else {
-    losses++;
-    guessesLeft--;
-}
-
-}
+// var correctLetter=computerLetter[Math.floor(Math.random() * computerLetter.length)];
 
 // Functions
-
-
-function compare () {
-    if (yourGuess===correctLetter){
-        wins++;
-        guessesLeft=reset;
-    }
-    compare;
+function resetgLeft (){
+     var gLeft=10;
 }
 
+// function gameReset(){
+    
+// }
 
-
+function startGame () {
+   document.write.myDirections(["Directions: Guess what letter I am thinking of:"]);
+   document.write.playerWins(["Wins: " + wins]);
+   document.write.lossesText(["Losses: " + losses]);
+   document.write.gLeft(["Guesses left:" + gLeft]);
+   document.write.alreadyGuessed(["Already Guessed"]);
+}
+console.log(startGame);
+function gameRun(){
+    
+    document.onkeyup = function(event) {
+        var yourGuess=event.key;
+        var res=yourGuess.toLowerCase();
+        var correctLetter=computerLetter[Math.floor(Math.random() * computerLetter.length)];
+    if (yourGuess === correctLetter) {
+        wins++;
+        resetgLeft;
+         } else {
+          losses++;
+          gLeft--;
+         };
+    };
+};
+startGame;
+gameRun;
