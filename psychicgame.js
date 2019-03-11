@@ -3,11 +3,12 @@
  // set up variables
 
 var computerLetter=["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"];
+var guessedAlready = [];
 var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
 var wins = 0;
 var losses = 0;
 var gLeft = 9
-//var lettersGuessed = [];
+
  
  
  //This is the area for variable references to html doc
@@ -33,7 +34,9 @@ console.log(playerWins);
 document.onkeyup = function(event) {
     userText.textContent = event.key;
 
-// Array.prototype.push.apply(userText, lettersGuessed);
+guessedAlready.push(userText);
+console.log(guessedAlready);
+
 
     
     /*for (i = 1; i < 9 ; i++){
