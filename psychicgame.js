@@ -7,7 +7,7 @@ var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.len
 var wins = 0;
 var losses = 0;
 var gLeft = 9
-var lettersGuessed = [];
+//var lettersGuessed = [];
  
  
  //This is the area for variable references to html doc
@@ -16,6 +16,7 @@ var lettersGuessed = [];
  var lossesText = document.getElementById("losses-text");
  var gLeft = document.getElementById("guesses-left");
  var userText = document.getElementById("userGuess");
+ var lettersGuessed = document.getElementById("lettersGuessed");
  
 console.log(myDirections);
 console.log(playerWins);
@@ -32,11 +33,14 @@ console.log(playerWins);
 document.onkeyup = function(event) {
     userText.textContent = event.key;
 
+// Array.prototype.push.apply(userText, lettersGuessed);
+
+    
     /*for (i = 1; i < 9 ; i++){
     var userText =+ userText;
-    lettersGuessed.push(userText);
-    }*/
     
+    }*/
+
 //I would like to send this info to the already guessed variable   
 
 
@@ -49,61 +53,63 @@ document.onkeyup = function(event) {
  
 
 //comparing the guesses
-if (userText === computerGuess) {
+/*if (userText === computerGuess) {
     document.write("You Guessed it!!");
     wins++;
     gLeft=9;
-    
+   
 //    can I put a  function gameReset(); here?
 }  else {
     alert("Wrong guess.  Try again.");
     gLeft--;
-    push
 }
+*/
 // if turns taken are used up
-if (gleft === 0) {
+
+/*if (gleft === 0) {
     losses++;
     
     gLeft = 9;
 }
-    // here we try to prevent the player from selecting a letter twice
+ */   
+    // display stats to the html document (would this display stats and update?)
+    // document.getElementById("player-wins").innerHTML = "Wins: " + wins;
+    // document.getElementById("losses-text").innerHTML = "losses: " + losses;
+    // document.getElementById("guesses-left").innerHTML = "guesses-left" + gLeft;
     
-
-        //and display the wrong guess to the screen
-    
-    
-
-    // display stats to the html document
-    document.getElementById("player-wins").innerHTML = "Wins: " + wins;
-    document.getElementById("losses-text").innerHTML = "losses: " + losses;
-    document.getElementById("guesses-left").innerHTML = "guesses-left" + gLeft;
-    document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
-
-
-
-
-
     // and can I put a function gameReset(); here?
 
 //End of my onkeyup function
-}
-
-document.onkeyup();
+};
 
 
 
 
 
-/* Functions
-function resetgLeft (){
+// Functions
+
+//This will reset guesses left var to 9
+
+/*  function resetgLeft (){
      var gLeft=9;
 } */
 
-// function gameReset(){
-    // }
- 
-    // if (res === correctLetter) {
-    //     wins++;
-    //     } else {
-    //       gLeft--;
-    //      };
+//This will reset the game 
+
+/* function gameReset(){
+     if (userText === correctLetter) {
+         wins++;
+         losses = 0;
+         guessesLeft = 9;
+         var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+         lettersGuessed = "";
+         myDirections.textContent("You won. Press another letter to start again.");
+          } else {
+            guessesLeft--;
+            lettersGuessed.textContent(userText);
+          };
+        }
+
+    // This function will end the game.
+
+    */
