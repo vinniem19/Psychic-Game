@@ -4,3 +4,8 @@
     width: auto;
     background-image: url("./images/space.jpg"); 
 }
+
+p {
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   font-size: 18px; 
+}

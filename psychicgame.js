@@ -4,10 +4,13 @@
 
 var computerLetter=["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"];
 var guessedAlready = [];
-var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
 var wins = 0;
 var losses = 0;
 var gLeft = 9
+
+//This computes the correct letter
+
+
 
  
  
@@ -19,8 +22,8 @@ var gLeft = 9
  var userText = document.getElementById("userGuess");
  
  
-console.log(myDirections);
-console.log(playerWins);
+
+
 
 //Functions during play
 //gameReset
@@ -28,31 +31,39 @@ console.log(playerWins);
 // -document.onkeyup();
 // -userTextLetter = "";
 
-console.log(computerGuess);
+//Here I am sending the correct letter to the console for my use.
+
  
 // when a key is pressed
 document.onkeyup = function(event) {
     userText.textContent = event.key;
+    var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
     
+    // pass the keyed letter to the display
  var lettersGuessed = document.getElementById("lettersGuessed");
- lettersGuessed.innerHTML += event.key;
-
+ lettersGuessed.innerHTML += event.key + ", ";
+ 
+ // Make a variaboe for the user's guess
 var userGuess = event.key;
-
 guessedAlready.push(userGuess);
-console.log(guessedAlready);
 
 
-
-// Conditional if loop when guessedAlready (userGuess) is wrong
-  if (guessedAlready.indexOf(computerGuess) === -1) {
+// Conditional if loop when guesses are used up
+if (gLeft === 0) {
+    alert("You lose!  Game over!");
+    resetStatsLose();
+    
+//  when guessedAlready (userGuess) is wrong
+}  else if (guessedAlready.indexOf(computerGuess) === -1) {
   alert("Wrong letter. Try again!");
   guessesLeft.innerHTML = " " + gLeft;
   gLeft--;
-  //  lettersGuessed += event.key + " ";
+  
+  // The other portion of loop when user guesses correctly.
   }    else  {
-    alert("Correct!");
+    alert("Correct! You win.  Game Over.");
     resetStatsWin();
+    
   }
 
  //End of my onkeyup function 
@@ -60,16 +71,26 @@ console.log(guessedAlready);
 
   // functions declared here
 
-function resetStatsWin() {
+ function resetStatsWin() {
     gLeft = 9;
     guessesLeft.innerHTML = " " + gLeft;
     wins++;
     playerWins.innerHTML = " " + wins;
-    var newComputerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
-    console.log(newComputerGuess);
     myDirections.innerHTML = "You now have a new letter to guess";
-}
     
+    } 
+    
+    function resetStatsLose() {
+        gLeft = 9;
+    guessesLeft.innerHTML = " " + gLeft;
+    losses++;
+    lossesText.innerHTML = " " + losses;
+    myDirections.innerHTML = "You now have a new letter to guess";
+    
+
+    }
+
+      
 
 /*if (lettersGuessed !== computerGuess) {
     for (let i = 0; i < alreadyGuessed.length; i++) {
@@ -83,8 +104,7 @@ function resetStatsWin() {
 
 /*
 function correct() {
-    if (lettersGuessed === computerGuess) {
-        console.log("That's correct!");
+    
     };
 }
 correct();
@@ -92,33 +112,23 @@ correct();
 
     
     /*for (i = 1; i < 9 ; i++){
-    var userText =+ userText;
+    
     
     }*/
 
 //I would like to send this info to the already guessed variable  
 
 /*function checkGuess() {
-    let userGuess = getElementById("userGuess").value;
-    if (gLeft === 9) {
-      getElementById("lettersGuessed").textContent = 'Previous guesses: ';
-     
-      getElementById("lettersGuessed").textContent += userGuess + ' ';
+    
     }
 }
 checkGuess();
 */
-   /* let userGuess = getElementById(userGuess.value);
-    if (gLeft === 9) {
-      guesses.textContent = 'Previous guesses: ';
-     
-    guesses.textContent += userGuess + ' ';
-*/
+   
 
-//  or do we get send it this way
-//  userText.textContent += userTextLetter + ' ';
 
- //This computes the correct letter
+
+ 
  
  
  
