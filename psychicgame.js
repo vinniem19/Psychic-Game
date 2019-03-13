@@ -1,6 +1,6 @@
  
  
- // set up variables
+  // set up variables
 
 var computerLetter=["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"];
 var guessedAlready = [];
@@ -17,7 +17,7 @@ var gLeft = 9
  var lossesText = document.getElementById("losses-text");
  var gLeft = document.getElementById("guesses-left");
  var userText = document.getElementById("userGuess");
- var lettersGuessed = document.getElementById("lettersGuessed");
+ 
  
 console.log(myDirections);
 console.log(playerWins);
@@ -33,10 +33,32 @@ console.log(playerWins);
 // when a key is pressed
 document.onkeyup = function(event) {
     userText.textContent = event.key;
+    
+ var lettersGuessed = document.getElementById("lettersGuessed");
+ lettersGuessed.innerHTML += event.key;
+//guessedAlready.push(userText);
+//console.log(guessedAlready);
 
-guessedAlready.push(userText);
-console.log(guessedAlready);
+// Conditional if loop when userGuess is wrong
 
+/*if (lettersGuessed !== computerGuess) {
+    for (let i = 0; i < alreadyGuessed.length; i++) {
+        gLeft--;
+        alert("Wrong letter! Try again!");
+    }
+}
+*/
+}
+
+
+/*
+function correct() {
+    if (lettersGuessed === computerGuess) {
+        console.log("That's correct!");
+    };
+}
+correct();
+*/
 
     
     /*for (i = 1; i < 9 ; i++){
@@ -44,8 +66,24 @@ console.log(guessedAlready);
     
     }*/
 
-//I would like to send this info to the already guessed variable   
+//I would like to send this info to the already guessed variable  
 
+/*function checkGuess() {
+    let userGuess = getElementById("userGuess").value;
+    if (gLeft === 9) {
+      getElementById("lettersGuessed").textContent = 'Previous guesses: ';
+     
+      getElementById("lettersGuessed").textContent += userGuess + ' ';
+    }
+}
+checkGuess();
+*/
+   /* let userGuess = getElementById(userGuess.value);
+    if (gLeft === 9) {
+      guesses.textContent = 'Previous guesses: ';
+     
+    guesses.textContent += userGuess + ' ';
+*/
 
 //  or do we get send it this way
 //  userText.textContent += userTextLetter + ' ';
@@ -56,6 +94,7 @@ console.log(guessedAlready);
  
 
 //comparing the guesses
+
 /*if (userText === computerGuess) {
     document.write("You Guessed it!!");
     wins++;
@@ -71,8 +110,8 @@ console.log(guessedAlready);
 
 /*if (gleft === 0) {
     losses++;
-    
     gLeft = 9;
+    // and can I put a function gameReset(); here?
 }
  */   
     // display stats to the html document (would this display stats and update?)
@@ -80,10 +119,10 @@ console.log(guessedAlready);
     // document.getElementById("losses-text").innerHTML = "losses: " + losses;
     // document.getElementById("guesses-left").innerHTML = "guesses-left" + gLeft;
     
-    // and can I put a function gameReset(); here?
+    
 
 //End of my onkeyup function
-};
+
 
 
 
