@@ -15,7 +15,7 @@ var gLeft = 9
  var myDirections = document.getElementById("my-directions");
  var playerWins = document.getElementById("player-wins");
  var lossesText = document.getElementById("losses-text");
- var gLeft = document.getElementById("guesses-left");
+ var guessesLeft = document.getElementById("guesses-left");
  var userText = document.getElementById("userGuess");
  
  
@@ -28,7 +28,7 @@ console.log(playerWins);
 // -document.onkeyup();
 // -userTextLetter = "";
 
-
+console.log(computerGuess);
  
 // when a key is pressed
 document.onkeyup = function(event) {
@@ -36,10 +36,40 @@ document.onkeyup = function(event) {
     
  var lettersGuessed = document.getElementById("lettersGuessed");
  lettersGuessed.innerHTML += event.key;
-//guessedAlready.push(userText);
-//console.log(guessedAlready);
 
-// Conditional if loop when userGuess is wrong
+var userGuess = event.key;
+
+guessedAlready.push(userGuess);
+console.log(guessedAlready);
+
+
+
+// Conditional if loop when guessedAlready (userGuess) is wrong
+  if (guessedAlready.indexOf(computerGuess) === -1) {
+  alert("Wrong letter. Try again!");
+  guessesLeft.innerHTML = " " + gLeft;
+  gLeft--;
+  //  lettersGuessed += event.key + " ";
+  }    else  {
+    alert("Correct!");
+    resetStatsWin();
+  }
+
+ //End of my onkeyup function 
+  }
+
+  // functions declared here
+
+function resetStatsWin() {
+    gLeft = 9;
+    guessesLeft.innerHTML = " " + gLeft;
+    wins++;
+    playerWins.innerHTML = " " + wins;
+    var newComputerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+    console.log(newComputerGuess);
+    myDirections.innerHTML = "You now have a new letter to guess";
+}
+    
 
 /*if (lettersGuessed !== computerGuess) {
     for (let i = 0; i < alreadyGuessed.length; i++) {
@@ -48,7 +78,7 @@ document.onkeyup = function(event) {
     }
 }
 */
-}
+
 
 
 /*
@@ -90,17 +120,16 @@ checkGuess();
 
  //This computes the correct letter
  
- console.log(computerGuess);
+ 
  
 
-//comparing the guesses
 
-/*if (userText === computerGuess) {
-    document.write("You Guessed it!!");
-    wins++;
-    gLeft=9;
+
+
    
 //    can I put a  function gameReset(); here?
+
+/*
 }  else {
     alert("Wrong guess.  Try again.");
     gLeft--;
@@ -121,7 +150,7 @@ checkGuess();
     
     
 
-//End of my onkeyup function
+
 
 
 
@@ -151,7 +180,7 @@ checkGuess();
             lettersGuessed.textContent(userText);
           };
         }
-
+*/
     // This function will end the game.
 
-    */
+    
