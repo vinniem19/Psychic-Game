@@ -15,80 +15,90 @@ var gLeft = 9
  
  
  //This is the area for variable references to html doc
- var myDirections = document.getElementById("my-directions");
+ 
  var playerWins = document.getElementById("player-wins");
  var lossesText = document.getElementById("losses-text");
  var guessesLeft = document.getElementById("guesses-left");
- var userText = document.getElementById("userGuess");
- 
- 
-
-
-
-//Functions during play
-//gameReset
-//--wouldn't we just add the document.onkeyup function again?
-// -document.onkeyup();
-// -userTextLetter = "";
-
-//Here I am sending the correct letter to the console for my use.
-
- 
-// when a key is pressed
-document.onkeyup = function(event) {
-    userText.textContent = event.key;
-    var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
-    
-    // pass the keyed letter to the display
  var lettersGuessed = document.getElementById("lettersGuessed");
- lettersGuessed.innerHTML += event.key + ", ";
+ var userGuess;
+ var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+ console.log(computerGuess);
  
- // Make a variaboe for the user's guess
-var userGuess = event.key;
-guessedAlready.push(userGuess);
-
-
-// Conditional if loop when guesses are used up
-if (gLeft === 0) {
-    alert("You lose!  Game over!");
-    resetStatsLose();
+ 
+ 
+ 
+ //Functions during play
+ //gameReset
+ //--wouldn't we just add the document.onkeyup function again?
+ // -document.onkeyup();
+ // -userTextLetter = "";
+ 
+ //Here I am sending the correct letter to the console for my use.
+ function reset() {
+     computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+     console.log(computerGuess);
+     gLeft = 9;
+     guessesLeft.textContent = gLeft;
+     guessedAlready = [];
+     lettersGuessed.textContent = guessedAlready;
+     
+    }
     
-//  when guessedAlready (userGuess) is wrong
-}  else if (guessedAlready.indexOf(computerGuess) === -1) {
-  alert("Wrong letter. Try again!");
-  guessesLeft.innerHTML = " " + gLeft;
-  gLeft--;
+    // when a key is pressed
+    document.addEventListener("keyup", function(event) {
+        
+            userguess = event.key.toLowerCase();
+            guessedAlready.push(userguess);
+            lettersGuessed.textContent = guessedAlready;
+            gLeft--;
+            guessesLeft.textContent = gLeft;
+        //  when guessedAlready (userGuess) is wrong
+            if (userguess === computerGuess) {
+                wins++;
+                playerWins.textContent = wins;
+                alert("Correct! You win.");
+                reset();
+            }
+        // Conditional if loop when guesses are used up
+            else if (gLeft === 0) {
+                alert("You lose!  Game over!");
+                losses++;
+                lossesText.textContent = losses;
+                reset();
+        } 
+    })
+  
   
   // The other portion of loop when user guesses correctly.
-  }    else  {
-    alert("Correct! You win.  Game Over.");
-    resetStatsWin();
+//   }    else  {
+     
+//     resetStatsWin();
     
-  }
+//   }
 
- //End of my onkeyup function 
-  }
+//  //End of my onkeyup function 
+//   });
 
-  // functions declared here
+//   // functions declared here
 
- function resetStatsWin() {
-    gLeft = 9;
-    guessesLeft.innerHTML = " " + gLeft;
-    wins++;
-    playerWins.innerHTML = " " + wins;
-    myDirections.innerHTML = "You now have a new letter to guess";
+//  function resetStatsWin() {
+//     gLeft = 9;
+//     guessesLeft.innerHTML = " " + gLeft;
+//     wins++;
+//     playerWins.innerHTML = " " + wins;
+//     //myDirections.innerHTML = "You now have a new letter to guess";
     
-    } 
+//     } 
     
-    function resetStatsLose() {
-        gLeft = 9;
-    guessesLeft.innerHTML = " " + gLeft;
-    losses++;
-    lossesText.innerHTML = " " + losses;
-    myDirections.innerHTML = "You now have a new letter to guess";
+//     function resetStatsLose() {
+//         gLeft = 9;
+//     guessesLeft.innerHTML = " " + gLeft;
+//     losses++;
+//     lossesText.innerHTML = " " + losses;
+//     myDirections.innerHTML = "You now have a new letter to guess";
     
 
-    }
+//     }
 
       
 
