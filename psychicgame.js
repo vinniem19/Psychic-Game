@@ -60,7 +60,7 @@ var gLeft = 9
                 reset();
             }
         // Conditional if loop when guesses are used up
-            else if (gLeft === 0) {
+            else if (gLeft === -1) {
                 alert("You lose!  Game over!");
                 losses++;
                 lossesText.textContent = losses;

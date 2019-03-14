@@ -2,7 +2,7 @@
 .wrapper {
     height: auto;
     width: auto;
-    background: url("./images/space.jpg"); 
+    background-image: url("./images/space.jpg"); 
 }
 
 p {
